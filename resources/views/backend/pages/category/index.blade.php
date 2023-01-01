@@ -5,6 +5,7 @@
 @endsection
 @push('admin_style')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .dataTables_length {
             padding: 20px 0;
@@ -17,7 +18,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-end">
                 <a href="{{ route('category.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus-circle"></i>
+                    <i class="fa fa-plus"></i>
                     Add Category
                 </a>
             </div>
@@ -49,10 +50,17 @@
                                             Setting
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-edit"></i>Edit</a>
+                                            <li><a class="dropdown-item" href="{{route('category.edit',$category->slug)}}"><i class="fa fa-edit"></i>Edit</a>
                                             </li>
-                                            <li><a class="dropdown-item" href="#"><i
-                                                        class="fas fa-delete"></i>Delete</a></li>
+                                            <li>
+                                                <form action="{{route('category.destroy',$category->slug)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item show_confirm"><i
+                                                        class="fa fa-trash"></i>Delete</button>
+                                                </form>
+
+                                            </li>
                                         </ul>
                                     </div>
                                 </td>
@@ -70,6 +78,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script>
@@ -77,6 +86,30 @@
             $('#datatable').DataTable({
                 pagingType: 'first_last_numbers'
             });
+
+        });
+
+        $('.show_confirm').click(function(event){
+            let form = $(this).closest('form');
+            event.preventDefault();
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            })
 
         });
     </script>

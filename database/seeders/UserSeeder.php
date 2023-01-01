@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make(1234),
-            'remember_token' => Str::random(10), 
+            'remember_token' => Str::random(10),
         ]);
     }
 }

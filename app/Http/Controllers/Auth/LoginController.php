@@ -15,7 +15,7 @@ class LoginController extends Controller
 
     public function login(Request $request){
 
-        // dd($request);
+        //  dd($request);
         $validated = $request->validate([
         'email' => 'required|max:255',
         'password' => 'required|string|min:4',

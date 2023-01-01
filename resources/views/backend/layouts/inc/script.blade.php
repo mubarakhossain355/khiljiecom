@@ -13,6 +13,9 @@
 <script src="{{ asset('assets/backend') }}/js/base/search.js"></script>
 <script src="{{ asset('assets/backend') }}/js/base/settings.js"></script>
 <script src="{{ asset('assets/backend') }}/js/base/init.js"></script>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+ {!! Toastr::message() !!}
 <!-- Template Base Scripts End -->
 
 @stack('admin_script')
