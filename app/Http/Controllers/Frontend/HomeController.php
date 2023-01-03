@@ -18,7 +18,7 @@ class HomeController extends Controller
         $categories = Category::where('is_active',1)
         ->latest('id')
         ->limit(5)
-        ->select(['id','title','slug'])
+        ->select(['id','title','category_image','slug'])
         ->get();
         return view('frontend.pages.home',compact('testimonials','categories'));
     }

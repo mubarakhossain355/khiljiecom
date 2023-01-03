@@ -58,7 +58,7 @@
 
                          <div class="mb-3">
                             <label for="client-image" class="form-label">Client Image</label>
-                            <input type="file" name="client_image" class="form-control dropify @error('client_image')is-invalid @enderror" id="exampleFormControlInput1" placeholder="client designation">
+                            <input type="file" name="client_image" data-default-file="{{asset('uploads/testimonials')}}/{{$testimonial->client_image}}" class="form-control dropify @error('client_image')is-invalid @enderror" id="exampleFormControlInput1" placeholder="client designation">
                                  @error('client_image')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>

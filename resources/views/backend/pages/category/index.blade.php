@@ -31,6 +31,7 @@
                         <tr>
                             <th>#</th>
                             <th>Last Modified</th>
+                            <th>Category Image</th>
                             <th>Category Name</th>
                             <th>Category Slug</th>
                             <th>Options</th>
@@ -41,6 +42,7 @@
                             <tr>
                                 <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
                                 <td>{{ $category->updated_at->format('d M Y') }}</td>
+                                <td><img src="{{asset('uploads/categories')}}/{{$category->category_image}}" class="img-fluid rounded-circle" width="70" alt=""></td>
                                 <td>{{ $category->title }}</td>
                                 <td>{{ $category->slug }}</td>
                                 <td>
