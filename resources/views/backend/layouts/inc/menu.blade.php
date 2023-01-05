@@ -45,19 +45,19 @@
         </li>
 
         <li>
-            <a href="#products" data-href="Products.html">
+            <a href="#products" data-href="">
                 <i data-cs-icon="cupcake" class="icon" data-cs-size="18"></i>
                 <span class="label">Products</span>
             </a>
             <ul id="products">
                 <li>
-                    <a href="Products.List.html">
-                        <span class="label">List</span>
+                    <a href="{{route('product.index')}}">
+                        <span class="label">Product List</span>
                     </a>
                 </li>
                 <li>
-                    <a href="Products.Detail.html">
-                        <span class="label">Detail</span>
+                    <a href="{{route('product.create')}}">
+                        <span class="label">Product Create</span>
                     </a>
                 </li>
             </ul>

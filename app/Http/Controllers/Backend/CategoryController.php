@@ -86,6 +86,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, $slug)
     {
+        dd($request->all());
         $category = Category::whereSlug($slug)->first();
         $category->update([
             'title' => $request->title,
