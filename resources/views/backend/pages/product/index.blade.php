@@ -46,7 +46,7 @@
                             <tr>
                                 <th scope="row">{{ $products->firstItem() + $loop->index }}</th>
                                 <td>{{ $product->updated_at->format('d M Y') }}</td>
-                                <td><img src="{{asset('uploads/products')}}/{{$product->product_image}}" class="img-fluid rounded-circle" width="70" alt=""></td>
+                                <td><img src="{{asset('uploads/product_photos')}}/{{$product->product_image}}" class="img-fluid rounded-circle" width="70" alt=""></td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
                                 <td>{{$product->product_price}}</td>

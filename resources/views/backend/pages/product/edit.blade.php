@@ -122,7 +122,7 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="product-image" class="form-label">Product Image</label>
-                            <input type="file" name="product_image" data-default-file="{{asset('uploads/products')}}/{{$product->product_image}}" class="form-control dropify @error('product_image')is-invalid @enderror" id="exampleFormControlInput1" placeholder="category image">
+                            <input type="file" name="product_image" data-default-file="{{asset('uploads/product_photos')}}/{{$product->product_image}}" class="form-control dropify @error('product_image')is-invalid @enderror" id="exampleFormControlInput1" placeholder="category image">
                                  @error('product_image')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
@@ -130,6 +130,17 @@
                                 @enderror
 
                         </div>
+                        <!-- Product multiple Image start -->
+                        <div class="mb-3">
+                            <label for="formFileMultiple" class="form-label">Product Multiple Image</label>
+                            <input class="form-control  @error('product_multiple_image')is-invalid @enderror" type="file" name="product_multiple_image[]" id="formFileMultiple" multiple>
+                            @error('product_multiple_image')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                          </div>
+                        <!-- Product multiple Image end -->
                         <div class="form-check form-switch m-2">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
                             @if ($product->is_active)

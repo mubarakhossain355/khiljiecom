@@ -10,11 +10,12 @@
             </div>
         </div>
         <ul class="row">
+            @foreach ($products as $product)
             <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div class="product-wrap">
                     <div class="product-img">
                         <span>Sale</span>
-                        <img src="{{ asset('assets/frontend') }}/images/product/15.jpg" alt="">
+                        <img src="{{ asset('uploads/product_photos') }}/{{$product->product_image}}" alt="">
                         <div class="product-icon flex-style">
                             <ul>
                                 <li><a data-toggle="modal" data-target="#exampleModalCenter"
@@ -25,21 +26,30 @@
                         </div>
                     </div>
                     <div class="product-content">
-                        <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                        <p class="pull-left">$125
+                        <h3><a href="single-product.html">{{$product->name}}</a></h3>
+                        <p class="pull-left">${{$product->product_price}}
 
                         </p>
                         <ul class="pull-right d-flex">
+                            @for ($i=0;$i<$product->product_rating;$i++)
                             <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star-half-o"></i></li>
+                            @endfor
+
+
                         </ul>
                     </div>
                 </div>
             </li>
-            <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
+
+            @endforeach
+
+            <div class="col-12 text-center d-flex justify-content-center">
+                <div class="py-3">
+                    {{$products->links()}}
+                </div>
+            </div>
+
+            {{-- <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
                 <div class="product-wrap">
                     <div class="product-img">
                         <span>New</span>
@@ -360,7 +370,7 @@
             </li>
             <li class="col-12 text-center">
                 <a class="loadmore-btn" href="javascript:void(0);">Load More</a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>
