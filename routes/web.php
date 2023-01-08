@@ -8,7 +8,9 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Frontend\Auth\RegisterController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,17 @@ Route::prefix('')->group(function(){
     Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('add-to.cart');
     Route::get('/remove-from-cart/{cart_id}',[CartController::class,'removeFromCart'])->name('removeFrom.cart');
 
+    // Customer Authentication Route
+    Route::get('/register',[RegisterController::class,'registerPage'])->name('register.page');
+    Route::post('/register',[RegisterController::class,'registerStore'])->name('register.store');
+    Route::get('/login',[RegisterController::class,'loginPage'])->name('login.page');
+    Route::post('/login',[RegisterController::class,'loginStore'])->name('login.store');
+
+    Route::prefix('customer/')->middleware('auth')->group(function(){
+
+        Route::get('dashboard',[CustomerController::class,'customerDashboard'])->name('customer.dashboard');
+        Route::get('logout',[RegisterController::class,'customerLogout'])->name('customer.logout');
+    });
 
 });
 
@@ -42,15 +55,7 @@ Route::prefix('')->group(function(){
 Route::prefix('admin/')->group(function(){
     Route::get('login',[LoginController::class,'loginPage'])->name('admin.loginPage');
     Route::post('login',[LoginController::class,'login'])->name('admin.login');
-
-
-
-
-
-
     Route::get('logout',[LoginController::class,'logout'])->name('admin.logout');
-
-
     Route::middleware(['auth'])->group(function(){
          Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
          Route::resource('category', CategoryController::class);
