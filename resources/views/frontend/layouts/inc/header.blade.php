@@ -74,19 +74,19 @@
                         </ul>
                     </nav>
                 </div>
+
                 <div class="col-md-4 col-lg-2 col-sm-5 col-4">
                     <ul class="search-cart-wrapper d-flex">
-                        <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a>
-                        </li>
+                        <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
                         <li>
                             <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>2</span></a>
                             <ul class="cart-wrap dropdown_style">
                                 <li class="cart-items">
                                     <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/1.jpg" alt="">
+                                        <img src="assets/images/cart/1.jpg" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="{{route('cart.page')}}">Pure Nature Product</a>
+                                        <a href="cart.html">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -94,10 +94,10 @@
                                 </li>
                                 <li class="cart-items">
                                     <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/3.jpg" alt="">
+                                        <img src="assets/images/cart/3.jpg" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="{{route('cart.page')}}">Pure Nature Product</a>
+                                        <a href="cart.html">Pure Nature Product</a>
                                         <span>QTY : 1</span>
                                         <p>$35.00</p>
                                         <i class="fa fa-times"></i>
@@ -109,48 +109,37 @@
                                 </li>
                             </ul>
                         </li>
+
+
+
                         <li>
                             <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>3</span></a>
                             <ul class="cart-wrap dropdown_style">
+                                @php
+                                  $carts =  \Gloudemans\Shoppingcart\Facades\Cart::content();
+                                   $total_price = \Gloudemans\Shoppingcart\Facades\Cart::subtotal();
+                                @endphp
+                                @foreach ($carts as $item)
                                 <li class="cart-items">
                                     <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/1.jpg" alt="">
+                                        <img src="{{ asset('uploads/product_photos') }}/{{$item->options->product_image}}" class="img-fluid rounded" style="width: 30px" alt="">
                                     </div>
                                     <div class="cart-content">
-                                        <a href="{{route('cart.page')}}">Pure Nature Product</a>
-                                        <span>QTY : 1</span>
-                                        <p>$35.00</p>
-                                        <i class="fa fa-times"></i>
+                                        <a href="cart.html">{{$item->name}}</a>
+                                        <span>{{$item->qty}}</span>
+                                        <p>${{$item->qty*$item->price}}</p>
+                                        <a href="{{route('removeFrom.cart',['cart_id' =>$Item->rowId])}}"><i class="fa fa-times"></i></a>
                                     </div>
                                 </li>
-                                <li class="cart-items">
-                                    <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/3.jpg" alt="">
-                                    </div>
-                                    <div class="cart-content">
-                                        <a href="{{route('cart.page')}}">Pure Nature Product</a>
-                                        <span>QTY : 1</span>
-                                        <p>$35.00</p>
-                                        <i class="fa fa-times"></i>
-                                    </div>
-                                </li>
-                                <li class="cart-items">
-                                    <div class="cart-img">
-                                        <img src="{{ asset('assets/frontend') }}/images/cart/2.jpg" alt="">
-                                    </div>
-                                    <div class="cart-content">
-                                        <a href="{{route('cart.page')}}">Pure Nature Product</a>
-                                        <span>QTY : 1</span>
-                                        <p>$35.00</p>
-                                        <i class="fa fa-times"></i>
-                                    </div>
-                                </li>
-                                <li>Subtotol: <span class="pull-right">$70.00</span></li>
+                                @endforeach
+                                <li>Subtotol: <span class="pull-right">${{$total_price}}</span></li>
                                 <li>
                                     <button>Check Out</button>
                                 </li>
                             </ul>
                         </li>
+
+
                     </ul>
                 </div>
                 <div class="col-md-1 col-sm-1 col-2 d-block d-lg-none">
