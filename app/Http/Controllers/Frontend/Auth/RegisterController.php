@@ -77,7 +77,7 @@ class RegisterController extends Controller
     public function customerLogout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return redirect()->route('login.page');
     }
