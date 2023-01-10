@@ -11,7 +11,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <form action="#">
                             <table class="table-responsive cart-wrap">
                                 <thead>
                                     <tr>
@@ -27,7 +26,7 @@
                                     @foreach ($carts as $cartItem)
                                     <tr>
                                         <td class="images"><img src="{{asset('uploads/product_photos')}}/{{$cartItem->options->product_image}}" alt=""></td>
-                                        <td class="product"><a href="single-product.html">{{$cartItem->name}}</a></td>
+                                        <td class="product"><a href="#">{{$cartItem->name}}</a></td>
                                         <td class="ptice">${{$cartItem->price}}</td>
                                         <td class="quantity cart-plus-minus">
                                             <input type="text" value="{{$cartItem->qty}}" />
@@ -49,28 +48,46 @@
                                             {{-- <li>
                                                 <button>Update Cart</button>
                                             </li> --}}
-                                            <li><a href="shop.html">Continue Shopping</a></li>
+                                            <li><a href="{{route('shop-page')}}">Continue Shopping</a></li>
                                         </ul>
                                         <h3>Cupon</h3>
                                         <p>Enter Your Cupon Code if You Have One</p>
-                                        <div class="cupon-wrap">
-                                            <input type="text" placeholder="Cupon Code">
-                                            <button>Apply Cupon</button>
+                                         <div class="cupon-wrap">
+
+                                             <form action="{{route('customer.couponapply')}}" method="post">
+                                                @csrf
+                                                <input type="text" name="coupon_name" placeholder="Cupon Code" class="form-control">
+                                                <button type="submit" class="btn btn-danger">Apply Cupon</button>
+                                            </form>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6">
                                     <div class="cart-total text-right">
                                         <h3>Cart Totals</h3>
+                                        <p>
+                                            @if (Session::has('coupon'))
+                                               <a class="p-1" href="{{route('customer.couponremove','coupon_name')}}">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                            <b>{{Session::get('coupon')['name']}}</b> Is Applied
+                                            @endif
+                                        </p>
                                         <ul>
+                                            @if (Session::has('coupon'))
+                                            <li><span class="pull-left">Discount Amount</span>${{Session::get('coupon')['discount_amount']}}</li>
+                                            <li><span class="pull-left"> Total </span> ${{Session::get('coupon')['balance']}} <del class="text-danger">${{Session::get('coupon')['cart_total']}}</del></li>
+                                            @else
                                             <li><span class="pull-left">Subtotal </span>${{$total_price}}</li>
                                             <li><span class="pull-left"> Total </span> ${{$total_price}}</li>
+                                            @endif
+
                                         </ul>
                                         <a href="checkout.html">Proceed to Checkout</a>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -10,19 +10,25 @@
                 </div>
                 <div class="col-md-6 col-12">
                     <ul class="d-flex account_login-area">
+                        @auth
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
                                     class="fa fa-angle-down"></i></a>
                             <ul class="dropdown_style">
-                                <li><a href="{{route('login.page')}}">Login</a></li>
-                                <li><a href="{{route('register.page')}}">Register</a></li>
+
                                 <li><a href="{{route('cart.page')}}">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="wishlist.html">wishlist</a></li>
                                 <li><a href="{{route('customer.logout')}}">Logout</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{route('register.page')}}"> Login/Register </a></li>
+                        @endauth
+                        @guest
+                            <li><a href="{{route('login.page')}}">Login</a></li>
+                            <li><a href="{{route('register.page')}}">Register</a></li>
+                        @endguest
+
+
                     </ul>
                 </div>
             </div>
@@ -57,7 +63,7 @@
                                 <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
                                     <li><a href="about.html">About Page</a></li>
-                                    <li><a href="single-product.html">Product Details</a></li>
+                                    {{-- <li><a href="single-product.html">Product Details</a></li> --}}
                                     <li><a href="{{route('cart.page')}}">Shopping cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
@@ -129,7 +135,7 @@
                                         <a href="cart.html">{{$item->name}}</a>
                                         <span>{{$item->qty}}</span>
                                         <p>${{$item->qty*$item->price}}</p>
-                                        <a href="{{route('removeFrom.cart',['cart_id' =>$Item->rowId])}}"><i class="fa fa-times"></i></a>
+                                        <a href="{{route('removeFrom.cart',['cart_id' =>$item->rowId])}}"><i class="fa fa-times"></i></a>
                                     </div>
                                 </li>
                                 @endforeach

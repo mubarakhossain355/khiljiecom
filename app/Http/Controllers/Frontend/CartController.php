@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -50,4 +54,68 @@ class CartController extends Controller
         Toastr::info('Product removed From Cart !!');
         return back();
     }
+
+    public function couponApply(Request $request){
+        if(!Auth::check()){
+            Toastr::error('You must need login first');
+            return redirect()->route('login.page');
+        }
+        // dd($request->all());
+
+
+        $check = Coupon::where('coupon_name',$request->coupon_name)->first();
+
+        //dd($check);
+        // check Coupon validity
+
+
+        // if session get existing  coupon, then don't allow double coupon
+
+        if(Session::get('coupon')){
+            Toastr::error('Already Applied Coupon !!','info!!');
+            return redirect()->back();
+        }
+
+        // if valid coupon found
+
+        if($check != null){
+            // Check coupon validity
+            $check_validity = $check->validity_till > Carbon::now()->format('Y-m-d');
+            // if coupon date is not required
+            if($check_validity){
+                //check coupon discount type
+                Session::put('coupon',[
+                    'name' => $check->coupon_name,
+                    'discount_amount' =>round((Cart::subtotal() * $check->discount_amount)/100) ,
+                    'cart_total' => Cart::subtotal(),
+                    'balance' =>round(Cart::subtotal()- (Cart::subtotal() * $check->discount_amount)/100)
+
+                ]);
+                Toastr::success('Coupon Applied Successfully !!','successfully!!');
+                return redirect()->back();
+
+            }else{
+                Toastr::error('Coupon Date Expired !!','info!!');
+                return redirect()->back();
+            }
+
+        }else{
+            Toastr::error('Invalid Action check empty Cart !!','info!!');
+                return redirect()->back();
+        }
+
+
+    }
+
+
+    public function removeCoupon($coupon_name){
+        Session::forget('coupon');
+        Toastr::success('Coupon Removed','successfully!!');
+        return redirect()->back();
+
+
+    }
+
+
+
 }
