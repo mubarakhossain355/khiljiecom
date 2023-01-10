@@ -17,7 +17,7 @@
                             <ul class="dropdown_style">
 
                                 <li><a href="{{route('cart.page')}}">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="{{route('customer.checkout.page')}}">Checkout</a></li>
                                 <li><a href="wishlist.html">wishlist</a></li>
                                 <li><a href="{{route('customer.logout')}}">Logout</a></li>
                             </ul>
@@ -55,7 +55,7 @@
                                     <li><a href="{{route('shop-page')}}">Shop Page</a></li>
                                     {{-- <li><a href="single-product.html">Product Details</a></li> --}}
                                     <li><a href="{{route('cart.page')}}">Shopping cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{route('customer.checkout.page')}}">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>
                             </li>
@@ -65,7 +65,7 @@
                                     <li><a href="about.html">About Page</a></li>
                                     {{-- <li><a href="single-product.html">Product Details</a></li> --}}
                                     <li><a href="{{route('cart.page')}}">Shopping cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{route('customer.checkout.page')}}">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="faq.html">FAQ</a></li>
                                 </ul>
@@ -174,7 +174,7 @@
                                     <li><a href="{{route('shop-page')}}">Shop Page</a></li>
                                     {{-- <li><a href="single-product.html">Product Details</a></li> --}}
                                     <li><a href="{{route('cart.page')}}">Shopping cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{route('customer.checkout.page')}}">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                 </ul>
                             </li>
@@ -184,7 +184,7 @@
                                     <li><a href="about.html">About Page</a></li>
                                     {{-- <li><a href="single-product.html">Product Details</a></li> --}}
                                     <li><a href="{{route('cart.page')}}">Shopping cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{route('customer.checkout.page')}}">Checkout</a></li>
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="faq.html">FAQ</a></li>
                                 </ul>

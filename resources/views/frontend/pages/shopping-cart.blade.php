@@ -84,7 +84,7 @@
                                             @endif
 
                                         </ul>
-                                        <a href="checkout.html">Proceed to Checkout</a>
+                                        <a href="{{route('customer.checkout.page')}}">Proceed to Checkout</a>
                                     </div>
                                 </div>
                             </div>
