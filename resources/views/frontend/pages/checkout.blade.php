@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col-sm-6 col-12">
                                             <p>Upazila *</p>
-                                            <select name="upazila-id" id="upazila_id" class="custom-select js-example-basic-single">
+                                            <select name="upazila_id" id="upazila_id" class="custom-select js-example-basic-single">
                                                 <option value="">Select upazila</option>
                                             </select>
 
